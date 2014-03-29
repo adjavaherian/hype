@@ -1,0 +1,21 @@
+{
+  "name": "hype.js",
+  "version": "0.0.0",
+  "description": "modular micro-like service",
+  "main": "hypeServer.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "hype",
+    "likes",
+    "blog"
+  ],
+  "author": "4m1r",
+  "license": "MIT",
+  "devDependencies": {
+    "connect": "^2.14.3",
+    "qs": "^0.6.6",
+    "sqlite3": "^2.2.0"
+  }
+}

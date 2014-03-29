@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+<head>
+    <title>Get Hype...</title>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
+</head>
+<body>
+
+<script>
+
+    (function($){
+        function getHype(el){
+            $.ajax({
+                context: el,
+                url: "http://localhost:3000/",
+                dataType: 'jsonp',
+                crossDomain: 'true',
+                data: {
+                    'set' : window.btoa(document.URL)
+                },
+                success: function(data){
+                    $(this).html('Hype...'+data.hype);
+                },
+                error: function(err){
+                    //run silent, run deep
+                }
+            });
+        }
+        $.widget('ui.hype', {
+            _create: function(){
+                getHype(this.element);
+                this.element.html('Hype...');
+                this.element.css({
+                    'font-family' : 'Impact',
+                    'letter-spacing': '1px',
+                    'font-size': '1em'
+                });
+                this.element.on('click', function(e){
+                    e.preventDefault();
+                    getHype(e.target);
+                });
+            }
+        });
+    })(jQuery);
+
+    $('<button>').hype().appendTo('body');
+
+</script>
+</body>
+</html>

@@ -2,9 +2,11 @@
 
 ## Synopsis
 
-Hype^ is the JavaScript equivalent of the Honey Badger. It's designed to 'hype' up your lame website and not give a f$ck when you try to do bad things to it.
-In its purist form, it is simply a free site hit counter service.  We've provided a simple jQuery widget that you can add to your lame site to 'hype' it up.  The widget is pre-configured to use our dedicated hype^ servers, but
-you can also download and use hypeServer.js to run that $hit yourself if you think you know what you're doing.
+hype^ is designed to 'hype' up your lame website and not give a f$ck when you try to do bad things to it.
+In its purist form, it is simply a free hit counter that tracks page loads and 'hypes' or clicks on the hype element.
+We've provided a simple jQuery widget that you can add to your site to 'hype' it up.
+The widget is pre-configured to use our dedicated hype^ servers, but you can also run your own hypeServer.js
+Run that $hit yourself if you think you know what you're doing.
 
 ## Code Example
 
@@ -12,7 +14,7 @@ http://hype.heroku.net/?callback=jQuery111008274388874415308_1396317114129&set=a
 
 ## Motivation
 
-We created hype^ so that your site wouldn't be so lame.  People needed hype, so we helped them.
+I created hype^ so that your site wouldn't be so lame.  People needed hype, so I helped them.
 Hype is a state-ful micro-liking service that you can use to spruce up your $hitbox lame a$$ site.
 Users shouldn't have to be on any social networks or even log in to 'like' something.  Use hype^.
 If they like your page, or even just a part of your page, they can tell you about it without becoming some sort of food item for mass-market-a-saurus.
@@ -24,12 +26,11 @@ We can store 2^64 clicks per element.  Good luck with that.
 git clone https://github.com/adjavaherian/hype.git
 
 ###hype UI extension
-check out index.html  it helps.
-if you have no idea what this does, just try copying everything in that script tag and style tag
-maybe a nerdy sibling or cousing can help?
-
-you'll need jquery and jquery-ui
-we like open-sans.  use it by copying the style tags too
+- you'll need jquery and jquery-ui
+- check out index.html  it helps.
+- if you have no idea what this does, just try copying everything in that script tag and style tag
+- maybe a nerdy sibling or cousin can help?
+- I like open-sans. use it by copying the style tags too
 
 ###hypeServer
 git clone https://github.com/adjavaherian/hype.git
@@ -41,10 +42,10 @@ npm install
 
 ## API Reference
 
-api is pending.  basically a jsonp request with a 'set' parameter should work.
-caveat, your url needs to be base64 encoded.
-
-?set=b64encoded-url.
+- api is pending.
+- basically a jsonp request with a 'set' parameter should work.
+- caveat, your url needs to be base64 encoded.
+- eg. http://hype.heroku.com/?set=b64encoded-url.
 
 ## Tests
 
@@ -52,7 +53,7 @@ Please fork and help us write tests
 
 ## Contributors
 
-#adjavaherian, n3d4 and co.
+#adjavaherian
 
 ## License
 

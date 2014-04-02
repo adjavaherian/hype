@@ -22,11 +22,6 @@
 </head>
 <body>
 
-<!--<span class="hype-button">-->
-    <!--<span class="hype hype-logo">hype^</span>-->
-    <!--<span class="hype hype-counter">0000000001</span>-->
-<!--</span>-->
-
 <script>
 
     (function($){
@@ -41,7 +36,7 @@
 
             $.ajax({
                 context: el,
-                url: "http://localhost:3000/",
+                url: "http://hype-rulz.herokuapp.com",
                 dataType: 'jsonp',
                 crossDomain: 'true',
                 data: {
@@ -74,9 +69,6 @@
                 }).appendTo($(this.element));
 
                 this.element.css({
-                    'width': '96px',
-                    'height': '24px',
-                    'display': 'inline-block',
                     'font-family': 'open-sans',
                     'cursor' : 'pointer'
                 });
@@ -96,7 +88,7 @@
 
     })(jQuery);
 
-    $('<span>').hype().appendTo('body');
+    $('body').hype();
 
 </script>
 </body>

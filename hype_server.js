@@ -20,7 +20,7 @@ var conn = anyDB.createConnection('driver://icpzeouitgiqbt:aaMAnA-v1jR9AJ0oQziFV
 //    if (err) throw err;
 //});
 
-var port = 80;
+var port = process.env.PORT || 3000;
 
 //create db
 var sql = 'CREATE TABLE IF NOT EXISTS hypetable (url TEXT UNIQUE NOT NULL, hype BIGINT NOT NULL)';

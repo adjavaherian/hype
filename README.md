@@ -10,7 +10,8 @@ Run it yourself if you know what you're doing.
 
 ## Code Example
 
-`http://hype-rulz.herokuapp.com/?callback=jQuery111008274388874415308_1396317114129&set=aHR0cDovL3BpcGUuYXV0b2Rlc2suY29tL2h5cGUv&_=1396317114142`
+`http://hype-rulz.herokuapp.com/?callback=jQuery111008274388874415308_1396317114129&set=aHR0cDovL3BpcGUuYXV0b2Rlc2suY29tL2h5cGUv&_=1396317114142
+`
 
 ## Motivation
 
@@ -20,7 +21,7 @@ Users shouldn't have to be on any social networks or even log in to 'like' somet
 If they like your site, or even just a part of your site, they can tell you about it without becoming some sort of food item for the coporate-a-saurus.
 The example implementation encourages you to not only like the page, but 'hype' it up with as many clicks as your fingers can stand.
 No tracking, no eye of sauron, no bad mojo.  The only thing we store is your site url and site + element id.  Use hype as many times as you want, and let people click the sh1t out of it.
-We can store 2^64 clicks per element, or just about 10 billion hypes.  Good luck with that.
+We can store 2^64 clicks per element, or just about 10 billion hypes.
 
 ## Installation
 `git clone https://github.com/adjavaherian/hype.git`
@@ -53,7 +54,7 @@ Please fork and help us write tests
 
 ## Contributors
 
-#adjavaherian
+\#adjavaherian
 
 ## License
 

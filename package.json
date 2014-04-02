@@ -30,8 +30,6 @@
   },
   "dependencies": {
     "connect": "^2.14.3",
-    "qs": "^0.6.6",
-    "sqlite3": "^2.2.0",
     "any-db": "^2.1.0",
     "any-db-postgres": "^2.1.1",
     "any-db-transaction": "^2.1.3"

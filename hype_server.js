@@ -12,7 +12,7 @@ var http = require('http'),
 
 //prod
 var conn = anyDB.createConnection('driver://icpzeouitgiqbt:aaMAnA-v1jR9AJ0oQziFVSG_xO@ec2-54-204-45-126.compute-1.amazonaws.com/d5cji0ou1r0v0s', function(err){
-    if (err) throw err; 
+    if (err) throw err;
 });
 
 //dev

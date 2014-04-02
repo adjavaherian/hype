@@ -1,31 +1,39 @@
 {
-    "name": "hype.js",
-    "version": "0.0.1",
-    "description": "modular micro-like service",
-    "main": "hypeServer.js",
-    "keywords": [
+  "name": "hype.js",
+  "version": "0.0.1",
+  "description": "modular micro-like service",
+  "main": "hypeServer.js",
+  "keywords": [
     "hype",
     "likes",
     "blog"
-    ],
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/adjavaherian/hype.git"
-    },
-    "author": "4m1r",
-    "license": "MIT",
-    "devDependencies": {
-        "connect": "^2.14.3",
-        "qs": "^0.6.6",
-        "sqlite3": "^2.2.0",
-        "any-db": "^2.1.0",
-        "any-db-postgres": "^2.1.1",
-        "any-db-transaction": "^2.1.3"
-    },
-    "scripts": {
-        "start": "node ./hype_server.js"
-    },
-    "engines": {
-        "node": "0.10.x"
-    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/adjavaherian/hype.git"
+  },
+  "author": "4m1r",
+  "license": "MIT",
+  "devDependencies": {
+    "connect": "^2.14.3",
+    "qs": "^0.6.6",
+    "sqlite3": "^2.2.0",
+    "any-db": "^2.1.0",
+    "any-db-postgres": "^2.1.1",
+    "any-db-transaction": "^2.1.3"
+  },
+  "scripts": {
+    "start": "node ./hype_server.js"
+  },
+  "engines": {
+    "node": "0.10.x"
+  },
+  "dependencies": {
+    "connect": "^2.14.3",
+    "qs": "^0.6.6",
+    "sqlite3": "^2.2.0",
+    "any-db": "^2.1.0",
+    "any-db-postgres": "^2.1.1",
+    "any-db-transaction": "^2.1.3"
+  }
 }

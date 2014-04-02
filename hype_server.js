@@ -10,7 +10,7 @@ var http = require('http'),
     anyDB = require('any-db-postgres'),
     begin = require('any-db-transaction');
 
-var conn = anyDB.createConnection('driver://mgkrcxixayxmai:ndAPeWjmuCZWFF7rwSPwm5Rram@ec2-54-225-255-208.compute-1.amazonaws.com/d6ulepu88fh4i5', function(err){
+var conn = anyDB.createConnection('driver://icpzeouitgiqbt:aaMAnA-v1jR9AJ0oQziFVSG_xO@ec2-54-204-45-126.compute-1.amazonaws.com/d5cji0ou1r0v0s', function(err){
     if (err) throw err;
 });
 

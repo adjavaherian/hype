@@ -10,11 +10,20 @@ var http = require('http'),
     anyDB = require('any-db-postgres'),
     begin = require('any-db-transaction');
 
-var conn = anyDB.createConnection('driver://4m1r@localhost/hypedb', function(err){
+var conn = anyDB.createConnection('driver://mgkrcxixayxmai:ndAPeWjmuCZWFF7rwSPwm5Rram@ec2-54-225-255-208.compute-1.amazonaws.com/d6ulepu88fh4i5', function(err){
     if (err) throw err;
 });
 
-var port = 3000;
+var port = 80;
+
+//create db
+var sql = 'CREATE TABLE IF NOT EXISTS hypetable (url TEXT UNIQUE NOT NULL, hype BIGINT NOT NULL)';
+
+conn.query(sql, function (err, result) {
+    if(err) throw err;
+    console.log(result);
+});
+
 
 console.log('starting hype server on port '+port);
 
@@ -58,7 +67,7 @@ var app = connect()
     .use(connect.query())
     .use(checkReq)
     .use(function(req, res){
-        res.end('get hype...\n');
+        res.end('get hype...https://github.com/adjavaherian/hype\n');
     });
 
 http.createServer(app).listen(port);

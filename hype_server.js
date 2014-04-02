@@ -10,9 +10,15 @@ var http = require('http'),
     anyDB = require('any-db-postgres'),
     begin = require('any-db-transaction');
 
+//prod
 var conn = anyDB.createConnection('driver://icpzeouitgiqbt:aaMAnA-v1jR9AJ0oQziFVSG_xO@ec2-54-204-45-126.compute-1.amazonaws.com/d5cji0ou1r0v0s', function(err){
     if (err) throw err;
 });
+
+//dev
+//var conn = anyDB.createConnection('driver://4m1r@localhost/hypedb', function(err){
+//    if (err) throw err;
+//});
 
 var port = 80;
 
@@ -21,7 +27,6 @@ var sql = 'CREATE TABLE IF NOT EXISTS hypetable (url TEXT UNIQUE NOT NULL, hype 
 
 conn.query(sql, function (err, result) {
     if(err) throw err;
-    console.log(result);
 });
 
 

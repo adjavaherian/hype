@@ -6,36 +6,29 @@
 'use strict';
 
 var http = require('http'),
-	connect = require('connect'),
-    sqlite3 = require('sqlite3').verbose();
+    connect = require('connect'),
+    anyDB = require('any-db-postgres'),
+    begin = require('any-db-transaction');
 
-var db = new sqlite3.Database('hypeDB.sqlite3');
-
-db.serialize(function() {
-    db.run("CREATE TABLE IF NOT EXISTS hypeTable (url TEXT UNIQUE NOT NULL, hype INT NOT NULL)");
+var conn = anyDB.createConnection('driver://4m1r@localhost/hypedb', function(err){
+    if (err) throw err;
 });
 
-console.log('starting hype server');
+var port = 3000;
+
+console.log('starting hype server on port '+port);
 
 function setHype(url, callback){
 
-    db.serialize(function() {
-
-        db.run("INSERT OR IGNORE INTO hypeTable (url, hype) VALUES ($url, $hype)", {
-            $url: url,
-            $hype: 0
-        });
-
-        db.run("UPDATE hypeTable SET hype = hype + 1 WHERE url = $url", {
-            $url: url
-        });
-
-        db.get("SELECT rowid AS id, url, hype FROM hypeTable WHERE url = $url", { $url:url }, function(err, row) {
-            if(err) throw err;
-            console.log('hypeDB.hypeTable: ', row.id + ': ' + row.url + ' hype: '+row.hype);
-            callback(row);
-        });
+    var transaction = begin(conn);
+    transaction.on('error', console.error);
+    transaction.query('INSERT INTO hypetable ( url, hype ) SELECT $1, 0 WHERE NOT EXISTS (SELECT 1 FROM hypetable WHERE url = $1)', [url]);
+    transaction.query('UPDATE hypetable SET hype = hype + 1 WHERE url = $1', [url]);
+    transaction.query('SELECT url, hype FROM hypeTable WHERE url = $1', [url], function(err, data){
+        callback(data.rows[0]);
+        console.log('hypeDB.hypeTable: ', data.rows[0].url + ' hype: '+data.rows[0].hype);
     });
+    transaction.commit();
 }
 
 
@@ -68,5 +61,5 @@ var app = connect()
         res.end('get hype...\n');
     });
 
-http.createServer(app).listen(3000);
+http.createServer(app).listen(port);
 

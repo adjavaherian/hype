@@ -9,7 +9,13 @@
     <title>get_hype</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
-
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
+    <!-- build:js scripts/vendor/modernizr.js -->
+    <script src="bower_components/modernizr/modernizr.js"></script>
+    <!-- endbuild -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
     <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
@@ -30,9 +36,90 @@
         .hype-counter{
             font-size: 0.7em;
         }
+
+        /*user defined classes*/
+        .rounded{
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            border-radius: 5px;
+            padding: 5px;
+        }
+        .border{
+            border: 1px solid #dedede;
+        }
+        .border:active {
+            margin: 2px 0 0 2px;
+            border: 1px solid #777777;
+        }
+        .right{
+            float: right;
+            clear: both;
+        }
+
+        .code-blocks{
+            margin: 10px 0;
+        }
+        .both{
+            clear: both;
+        }
+
+        .other-elements{
+            margin-top: 10px;
+            padding: 10px;
+            background: rgba(255, 120, 201, 0.30);
+            text-align: center;
+        }
     </style>
 </head>
 <body>
+<!--[if lt IE 10]>
+<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->
+
+
+<div class="container">
+    <div class="jumbotron shadow"></div>
+    <h3>Extended paragraph. </h3>
+    <p><a href="">Lorem ipsum</a> dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+        exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+        reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+        occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    <img src="http://i.imgur.com/m6LgS98.jpg" width="300px">
+    <div class="right">
+        <h3>List Items</h3>
+        <ul class="demo-ul">
+            <li>Plaid hella marfa</li>
+            <li>Lorem ipsum dolor</li>
+            <li>Chupa cillium eu fugiat</li>
+        </ul>
+        <ol class="demo-ol">
+            <li>Ullamco laboris nisi</li>
+            <li>Okcupidatat non proident
+                <ol>
+                    <li style="color: red">Invisible hype!!! (inspect element)</li>
+                </ol>
+            </li>
+            <li>Desereunt anim id estum</li>
+        </ol>
+    </div>
+    <div class="code-blocks both">
+        <h3>Code Blocks</h3>
+        <pre>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create','UA-XXXXX-X');ga('send','pageview');</pre>
+    </div>
+    <h3 clear="both">Buttons and Select Options</h3>
+    <div class="other-elements both rounded">
+        <div style="display: inline-block">
+            <button class="rounded mice-button" style="margin-right: 10px">I like mice</button>
+        </div>
+        <span style="font-size: 2em;"> with </span>
+        <select style="margin-left: 10px">
+            <option>Wine</option>
+            <option>Cheese</option>
+        </select>
+    </div>
+</div>
+
 
 <script>
     (function($){
@@ -72,7 +159,7 @@
                 logo: true,
                 counter: true,
                 hypeId : '',
-                class : 'hype-container',
+                baseClass : 'hype-container',
                 userClasses: [],
                 contain: false,
                 clickAny: false,
@@ -90,16 +177,18 @@
             _create: function(){
 
                 var classes = [];
-                classes.push(this.options.class, this.options.userClasses);
+                classes.push(this.options.baseClass, this.options.userClasses.join(' '));
 
                 var hypeDiv = $('<span>',{
                     css: this.options.css
                 }).addClass(classes.join(' '));
 
-                $('<span>',{
-                    class: 'hype-logo',
-                    html: 'hype^'
-                }).appendTo(hypeDiv);
+                if(this.options.logo){
+                    $('<span>',{
+                        class: 'hype-logo',
+                        html: 'hype^'
+                    }).appendTo(hypeDiv);
+                }
 
                 $('<span>',{
                     class: 'hype-counter',
@@ -148,34 +237,85 @@
 
     })(jQuery);
 
-    $('body').hype({
+
+    //instantiate some hype counters
+    $('.jumbotron').hype({
         attach: 'inner',
         clickAny: true,
-        css:{
+        css: {
             'font-size': '2em'
         }
     });
 
-//    $('p').hype({
-//        css: {
-//            float: 'right'
-//        },
-//        hypeId : 'cool-p'
-//    });
-//
-//    $('img').hype({
-//        contain: true,
-//        attach: 'inner',
-//        css:{
-//            float : 'none',
-//            color: 'white',
-//            top: '-20px'
-//        },
-//        hypeId : 'cool-yawn',
-//        clickAny: true
-//
-//    });
+    $('p').hype({
+        css: {
+            float: 'right'
+        },
+        hypeId : 'cool-p',
+        userClasses: ['border', 'rounded']
+    });
 
+    $('img').hype({
+        contain: true,
+        attach: 'inner',
+        userClasses: ['rounded'],
+        css:{
+            float : 'none',
+            color: '#00FF00',
+            top: '-25px',
+            left: '2px',
+            'font-size': '1em',
+            background: 'rgba(0,0,0,0.8)'
+        },
+        hypeId : 'cool-yawn',
+        clickAny: true
+    });
+
+    $('.demo-ul').hype({
+        hypeId: 'demo-ul',
+        attach: 'inner'
+    });
+
+    $('.demo-ol li:nth-child(2)').hype({
+        hypeId: 'ol-2',
+        attach: 'inner',
+        css:{
+            'display': 'none'
+        },
+        clickAny: true
+    });
+
+    $('pre').hype({
+        hypeId: 'code-block',
+        attach: 'after',
+        clickAny: 'true',
+        css: {
+            float: 'right'
+        }
+    });
+
+    $('.mice-button').hype({
+        attach: 'after',
+        logo: false,
+        hypeId: 'mouse-button',
+        css: {
+            display: 'block'
+        }
+    });
 </script>
+
+<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+<script>
+    (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+        e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+        e.src='//www.google-analytics.com/analytics.js';
+        r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+    ga('create','UA-XXXXX-X');ga('send','pageview');
+</script>
+
+<!-- build:js scripts/main.js -->
+<script data-main="scripts/main" src="bower_components/requirejs/require.js"></script>
+<!-- endbuild -->
 </body>
 </html>

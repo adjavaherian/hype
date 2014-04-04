@@ -4,19 +4,18 @@
 
 hype^ is designed to 'hype' up your website.
 In its purist form, it is simply a free hit counter that tracks page loads and 'hypes' or clicks/touches on the hype element.
-We've provided a simple jQuery widget in index.html that you can add to your site to 'hype' it up.
-The widget is pre-configured to use our dedicated hype^ servers, but you can also run your own hype_server.js
+I've provided a simple jQuery widget in index.html that you can add to your site to 'hype' it up.
+The widget is pre-configured to use my dedicated hype^ server, but you can also run your own hype_server.js
 Run it yourself if you know what you're doing.
 
 ## Code Example
 
-`http://hype-rulz.herokuapp.com/?callback=jQuery111008274388874415308_1396317114129&set=aHR0cDovL3BpcGUuYXV0b2Rlc2suY29tL2h5cGUv&_=1396317114142
-`
+`http://hype-rulz.herokuapp.com/?callback=jQuery111008274388874415308_1396317114129&set=aHR0cDovL3BpcGUuYXV0b2Rlc2suY29tL2h5cGUv&_=1396317114142`
 
 ## Motivation
 
 I created hype^ so that your site wouldn't be so.. hype-less.  People want hype, so I help them.
-Hype is a stateful micro-liking service that you can use to spruce up your site.
+Hype is a stateful micro-liking service that you can use to spruce up your site and track events.
 Users shouldn't have to be on any social networks or even log in to 'like' something.  Use hype^ and see the results in real-time.  Use hype on any click-able element of your site too.
 If they like your site, or even just a part of your site, they can tell you about it without becoming some sort of food item for the coporate-a-saurus.
 The example implementation encourages you to not only like the page, but 'hype' it up with as many clicks as your fingers can stand.

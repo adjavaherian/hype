@@ -79,7 +79,7 @@
 
 <div class="container">
     <div class="jumbotron shadow"></div>
-    <h3>Extended paragraph. </h3>
+    <h3>Extended paragraphs</h3>
     <p><a href="">Lorem ipsum</a> dolor sit amet, consectetur adipisicing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
         exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
@@ -133,6 +133,7 @@
         function getHype(el){
 
             var hypeId = window.btoa(document.URL + $(el).data('hype-id'));
+            var tempId = $(el).data('hype-temp');
 
             $.ajax({
                 context: el,
@@ -143,8 +144,8 @@
                     'set' : hypeId
                 },
                 success: function(data){
-                    $(this).find('.hype-counter').html(hypePad(data.hype, 10));
-
+                    $('#'+tempId).find('.hype-counter').html(hypePad(data.hype, 10));
+                    $(this).data({'hype-count': data.hype});
                 },
                 error: function(err){
                     //run silent, run deep
@@ -162,7 +163,7 @@
                 baseClass : 'hype-container',
                 userClasses: [],
                 contain: false,
-                clickAny: false,
+                solo: false,
                 css: {
                     color: '#777777',
                     position: 'relative',
@@ -190,10 +191,12 @@
                     }).appendTo(hypeDiv);
                 }
 
-                $('<span>',{
-                    class: 'hype-counter',
-                    html: hypePad(1, 10)
-                }).appendTo(hypeDiv);
+                if(this.options.counter){
+                    $('<span>',{
+                        class: 'hype-counter',
+                        html: hypePad(1, 10)
+                    }).appendTo(hypeDiv);
+                }
 
                 if(this.options.contain){
                     var replacement = $('<div></div>', {
@@ -216,22 +219,30 @@
                         hypeDiv.insertBefore(this.element);
                         break;
                     default:
-                        hypeDiv.appendTo(this.element);
+                        hypeDiv.insertAfter(this.element);
                         break;
                 }
 
-                if(this.options.clickAny){
-                    hypeDiv = $(hypeDiv.parents()[0]);
-                }
+                var tempId = this.options.hypeId +'_'+Math.floor(Math.random(1) * 10000);
+                var hypeId = this.options.hypeId;
 
-                hypeDiv.on('click', function(e){
+                $(this.element, hypeDiv).data({
+                    'hype-id': hypeId,
+                    'hype-temp': tempId,
+                    'hype-count': 0
+                });
+
+                hypeDiv.attr({
+                    id: tempId
+                });
+
+                $(this.element).on('click', function(e){
                     e.preventDefault();
                     getHype(this);
                 });
 
-                hypeDiv.data('hype-id', this.options.hypeId);
 
-                getHype(hypeDiv);
+                return getHype($(this.element));
             }
         });
 
@@ -241,7 +252,6 @@
     //instantiate some hype counters
     $('.jumbotron').hype({
         attach: 'inner',
-        clickAny: true,
         css: {
             'font-size': '2em'
         }
@@ -252,7 +262,8 @@
             float: 'right'
         },
         hypeId : 'cool-p',
-        userClasses: ['border', 'rounded']
+        userClasses: ['border', 'rounded'],
+        solo: true
     });
 
     $('img').hype({
@@ -267,13 +278,13 @@
             'font-size': '1em',
             background: 'rgba(0,0,0,0.8)'
         },
-        hypeId : 'cool-yawn',
-        clickAny: true
+        hypeId : 'cool-yawn'
     });
 
     $('.demo-ul').hype({
         hypeId: 'demo-ul',
-        attach: 'inner'
+        attach: 'inner',
+        solo: true
     });
 
     $('.demo-ol li:nth-child(2)').hype({
@@ -281,14 +292,12 @@
         attach: 'inner',
         css:{
             'display': 'none'
-        },
-        clickAny: true
+        }
     });
 
     $('pre').hype({
         hypeId: 'code-block',
         attach: 'after',
-        clickAny: 'true',
         css: {
             float: 'right'
         }
